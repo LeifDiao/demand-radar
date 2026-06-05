@@ -1,0 +1,6 @@
+# demand-radar 连接器依赖
+# 核心连接器（HN / App Store / Reddit-兜底 / 报告器）只用 Python 标准库，无需安装任何东西。
+# 下面是可选增强：
+
+google-play-scraper>=1.2.0   # Google Play 评论连接器需要
+praw>=7.7.0                  # Reddit 稳定模式（OAuth）需要，不装则自动回退公开 .json

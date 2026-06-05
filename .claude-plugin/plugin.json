@@ -1,0 +1,14 @@
+{
+  "name": "demand-radar",
+  "description": "Validate whether a demand is real before you build it. Frame a falsifiable hypothesis, fan out parallel agents across two pillars (top-down: industry reports / market size / capital signals; bottom-up: Hacker News / App Store reviews / search & social), enforce a 7-axis demand scorecard with ≥2-source triangulation, run an adversarial red-team that tries to kill the idea, and ship an answer-first HTML report with a Go / Conditional / Pivot / No-go verdict. Zero login, no scrapers — official free APIs + web search only. Trigger with /demand.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Leif Diao",
+    "email": "leifdiao@gmail.com",
+    "url": "https://github.com/LeifDiao"
+  },
+  "license": "CC-BY-NC-4.0",
+  "homepage": "https://leifdiao.github.io/demand-radar/",
+  "repository": "https://github.com/LeifDiao/demand-radar",
+  "keywords": ["demand-validation", "market-research", "product-market-fit", "idea-validation", "claude-code"]
+}

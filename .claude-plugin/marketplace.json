@@ -1,0 +1,13 @@
+{
+  "name": "demand-radar-marketplace",
+  "owner": {
+    "name": "Leif Diao"
+  },
+  "plugins": [
+    {
+      "name": "demand-radar",
+      "description": "Validate whether a demand is real before you build it — multi-agent evidence collection across two pillars, a 7-axis scorecard with source triangulation, an adversarial red-team, and an answer-first HTML verdict report. Zero login, no scrapers.",
+      "source": "./"
+    }
+  ]
+}

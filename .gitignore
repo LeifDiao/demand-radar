@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python (connectors, scripts, report generator)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node (reserved for the future paid crawler layer)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Generated validation reports — local artifacts.
+# The committed showcase report under docs/ is whitelisted below.
+reports/
+!docs/sample-report.html
+
+# Internal planning notes — kept local, not published.
+PLAN.md
