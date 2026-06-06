@@ -282,7 +282,7 @@ footer a{color:var(--t3)}footer a:hover{color:var(--signal)}
 function applyLang(zh){document.body.classList.toggle('zh',zh);document.documentElement.lang=zh?'zh':'en';}
 function toggleLang(){var zh=!document.body.classList.contains('zh');try{localStorage.setItem('dr-lang',zh?'zh':'en');}catch(e){}applyLang(zh);}
 (function(){var s=null;try{s=localStorage.getItem('dr-lang');}catch(e){}
- if(s===null){s=(navigator.language||'').toLowerCase().indexOf('zh')===0?'zh':'en';}
+ if(s===null){s='en';}
  applyLang(s==='zh');})();
 </script>
 </body>
