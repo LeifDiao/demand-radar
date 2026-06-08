@@ -52,7 +52,7 @@ description: "深度验证一类需求是否真实存在、值不值得做。输
 - **搜索需求 agent**：WebSearch 关键词热度、autocomplete、"people also ask"、Google Trends 趋势方向（全程零登录）。
 - **社交舆情 agent**：WebSearch X / 小红书 / 垂直论坛的真实讨论与情绪。
 
-每个 agent 返回后，收集它们的结构化证据（统一成 `validation-framework.md` F 节的**证据项**结构，每条打好 `signal` 标签），**不要在这一步下结论**。
+每个 agent 返回后，收集它们的结构化证据（统一成 `validation-framework.md` G 节的**证据项**结构，每条打好 `signal` 标签），**不要在这一步下结论**。
 
 **迭代补搜循环（最多 3 轮）**：第一轮证据收齐后，先自评有没有以下缺口，有就**再派一轮定向 agent**补，没有就进 ④：
 - 某个评分维度（尤其付费意愿、市场规模）证据空白
@@ -70,11 +70,11 @@ python3 ${CLAUDE_SKILL_DIR}/scripts/triangulate.py /tmp/evidence.json --out /tmp
 ```
 拿到每个 signal 被几个独立平台支持、置信度（线索/中/高）。单源的只能当线索。
 
-**再派 3 个评委 agent 独立打分**（降单模型偏见）：每个评委 agent 拿到 hypothesis + 三角验证结果 + 全部证据，按 7 项评分卡各独立产出一份评委评分卡 JSON（结构见 F 节）。三份合并成数组后跑：
+**再派 3 个评委 agent 独立打分**（降单模型偏见）：每个评委 agent 拿到 hypothesis + 三角验证结果 + 全部证据，按 7 项评分卡各独立产出一份评委评分卡 JSON（结构见 G 节）。⚠️ 第 6 维是「**差异化楔子**」不是「有没有竞争」：竞争存在是需求被验证的**正向**证据（计入付费意愿/市场规模），红海只在「你没有任何别人没占的切口」时压第 6 维——见 validation-framework.md「竞争怎么算分」。三份合并成数组后跑：
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/aggregate_scores.py /tmp/judges.json --out /tmp/agg.json
 ```
-脚本给出加权裁决档 + 标出评委分歧≥2 的维度（这些维度证据不清晰，报告要标注）。
+脚本给出加权裁决档 + 标出评委分歧≥2 的维度（报告要标注）+ `demand_state`（需求真实度 / 机会位置标签，喂给报告 `demand_tags` 当参考；竞争状态轴你按竞品证据补）。
 
 **双支柱交叉验证**：自上而下（报告/资本）和自下而上（社区/评论）是否一致？矛盾要单独高亮当关键发现（例：报告说市场大但社区零讨论）。
 
@@ -95,14 +95,14 @@ python3 ${CLAUDE_SKILL_DIR}/scripts/generate_report.py \
   --open
 ```
 
-`report.json` 必含且按此顺序呈现：
-1. **结论**（`answer` 大白话 + `verdict` 裁决 + `tldr_points` 关键判断，用 `[+]`/`[-]`/`[~]` 开头标正面/负面/中性）
-2. **该怎么做**（`actions` 建设性下一步，这是报告对用户最有用的部分，必须可执行）
-3. **评分卡**（`scorecard` 7 维，分数来自闭环重评后的终评）
-4. **详情**（`findings` + `contradictions` 双支柱对账 + `red_team` + `alternatives` + `not_verified`）
-5. **分析流程 & 数据**（`method` + `evidence` 全量证据，自动折叠在最后）
+`report.json` 必含且按此顺序呈现（字段详见 `report-template.md`）：
+1. **结论**（拆两段）：① `verdict_sub`/`verdict_sub2` 一句话**判断需求** + `verdict` 裁决 + `weighted_pct` 大分数 + `demand_tags` 需求判定 pill（自动渲染「这分数怎么读」刻度条）；② `why` 卡片（**≥5 条**，`kind` 用 `+`加分/`-`减分/`~`注意）说清分数怎么来
+2. **评分卡**（`scorecard` 7 维，第 6 维 = 差异化楔子，分数来自闭环重评后的终评）
+3. **该怎么做**（`actions` 可执行下一步，次要部分，2-3 条够了）
+4. **详情**（`voices` 不同领域怎么说 + `contradictions` 双支柱对账 + `red_team` + `alternatives` + `not_verified`）
+5. **分析流程**（`method` + `evidence` 全量证据，**默认折叠**在最后）
 
-铁律：`report.json` 顶部设 `lang` 跟用户语言走；`answer` 用人能看懂的话、给方向；`not_verified` 必填；绝不过度承诺；每条 finding 挂 `evidence_ids`。报告渲染成 dashboard（左侧栏导航 + 3 张分类 scorecard），7 维会自动按顺序归成「需求真实性/商业潜力/竞争格局」三类，所以 `scorecard` 数组顺序要稳定。
+铁律：`report.json` 顶部设 `lang` 跟用户语言走；`verdict_sub`/`verdict_sub2` 先**判断需求**（不是教怎么做）；`demand_tags` 用固定词表（validation-framework.md F 节）；`not_verified` 必填；绝不过度承诺；每条 `why`/`voice` 挂 `evidence_ids`。7 维自动归成「需求真实性/商业潜力/竞争格局」三类，`scorecard` 数组顺序要稳定。
 
 ## 参考文件索引
 

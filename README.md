@@ -22,9 +22,9 @@ The tools that exist are either single-source (Reddit-only pain miners) or gener
 
 **🔴 An adversarial red-team, by design.** You have confirmation bias; the red-team doesn't. A dedicated agent's only KPI is to **kill your hypothesis** — fake demand, saturated, declining, nobody pays, can't reach them, sample bias. Any "Go" has to survive it. In testing it pulled a verdict from *Conditional (55%)* down to *Pivot (40%)* by surfacing a buyer-mismatch the optimistic read had missed.
 
-**📐 A 7-axis scorecard with hard rules.** Pain intensity · prevalence · current-alternative gap · **willingness to pay** (weighted ×2) · market size & trend · competition/whitespace · reachability. A signal counts as *verified* only when **≥2 independent sources** confirm it — single-source stays a "lead." Three independent judge agents score in parallel; disagreements are flagged, not averaged away.
+**📐 A 7-axis scorecard with hard rules.** Pain intensity · prevalence · current-alternative gap · **willingness to pay** (weighted ×2) · market size & trend · **differentiation wedge** · reachability. Competition counts as proof of demand, not an automatic penalty — a red ocean only costs you the wedge axis when there's no opening left to take. A signal counts as *verified* only when **≥2 independent sources** confirm it — single-source stays a "lead." Three independent judge agents score in parallel; disagreements are flagged, not averaged away.
 
-**📋 Answer-first reports, not analyst dumps.** The report opens with **your question → a plain-language verdict → what to do next**. Scores, details, and the full method/evidence trail come after, collapsed. Every claim cites an evidence ID you can click to trace.
+**📋 Answer-first reports, not analyst dumps.** The report opens with **your question → a plain-language verdict → why** — the score sits on a 0–100 band so you can see at a glance what it means. Scorecard, what-to-do, details, and the full method/evidence trail follow, with the evidence collapsed. Every claim cites an evidence ID you can click to trace.
 
 **🔒 Zero login, no scrapers, no keys.** Official free APIs (Hacker News, iTunes; Google Play optional, needs a pip library) + web search only. Nothing to register, no OAuth, no anti-bot games. Reports render to a single self-contained HTML file.
 
@@ -46,11 +46,11 @@ The tools that exist are either single-source (Reddit-only pain miners) or gener
 
 Run `/demand <your idea>` and get a single-file, answer-first HTML report:
 
-1. **Verdict** — Go / Conditional / Pivot / No-go, with a plain-language answer to "is my demand real, and why," plus a confidence level.
-2. **What to do next** — concrete, pastable action cards (change your buyer, narrow the niche, run a pre-sale), prioritized. The part founders actually use.
-3. **Scorecard** — 7 axes with visual bars, post-red-team final scores, and the weighted percentage.
-4. **Details** — key findings, the two-pillar reconciliation, the red-team's most lethal flaw, a current-alternatives map, and an explicit **"what we could NOT verify"** section. No over-promising.
-5. **Method & sources** — collapsed at the bottom: agent count, evidence count, the full pipeline, and a clickable evidence appendix.
+1. **Verdict** — Go / Conditional / Pivot / No-go, with a plain-language answer to "is my demand real, and why," demand-state tags (real demand / red ocean / niche wedge…), a confidence level, and the score on a 0–100 band that shows what it means.
+2. **Scorecard** — 7 axes with visual bars, post-red-team final scores, and the weighted total.
+3. **What to do next** — concrete, pastable action cards (change your buyer, narrow the niche, run a pre-sale), prioritized. The part founders actually use.
+4. **Details** — what each source domain says, the two-pillar reconciliation, the red-team's most lethal flaw, a current-alternatives map, and an explicit **"what we could NOT verify"** section. No over-promising.
+5. **Method** — collapsed at the bottom: agent count, evidence count, the full pipeline, and a clickable evidence appendix.
 
 ---
 
